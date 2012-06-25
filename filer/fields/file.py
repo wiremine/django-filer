@@ -108,7 +108,8 @@ class FilerFileField(models.ForeignKey):
     def __init__(self, **kwargs):
         # we call ForeignKey.__init__ with the Image model as parameter...
         # a FilerImageFiled can only be a ForeignKey to a Image
-        self.validate_related_name(kwargs.get('related_name', None))
+        # Work around for an invalid error being thrown by django-filer
+        #self.validate_related_name(kwargs.get('related_name', None))
         return super(FilerFileField, self).__init__(
                                         self.default_model_class, **kwargs)
 
